@@ -71,7 +71,7 @@ class NewVisitorTest(StaticLiveServerTestCase):
         )
 
         #She types "But peacock feather" into a text box (Edith's hobby
-        #is tying fly0fishing lures)
+        #is tying fly-fishing lures)
         inputbox.send_keys('Buy peacock feathers')
 
         # When she hits enter, the page updates, and now the page lists
@@ -79,6 +79,8 @@ class NewVisitorTest(StaticLiveServerTestCase):
         inputbox.send_keys(Keys.ENTER)
         self.wait_for_row_in_list_table('1: Buy peacock feathers')
 
+        self.fail('Finish the test!')
+        
         # There is still a text box inviting her to add another item. She
         # enters "use peacock feathers to make a fly" (Edith is very 
         # methodical)
