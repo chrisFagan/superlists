@@ -10,7 +10,6 @@ class NewVisitorTest(StaticLiveServerTestCase):
     
     def setUp(self):
         self.browser = webdriver.Firefox()
-        self.browser.refresh()
         
     def tearDown(self):
         self.browser.quit()
@@ -28,10 +27,7 @@ class NewVisitorTest(StaticLiveServerTestCase):
                     raise e
                 time.sleep(0.5)
 
-    def test_can_start_a_list_for_one_user(self):
-        #Edith has heard about a cool new online to-do app. She goes
-        #to check out its homepage
-        self.browser.get(self.live_server_url)
+    
 
     def test_layout_and_styling(self):
         # Edith goes to the home page
@@ -57,7 +53,11 @@ class NewVisitorTest(StaticLiveServerTestCase):
             512,
             delta=10
         )
-        
+    def test_can_start_a_list_for_one_user(self):
+        #Edith has heard about a cool new online to-do app. She goes
+        #to check out its homepage
+        self.browser.get(self.live_server_url)
+
         # She notices the page title and header mention to-do lists
         self.assertIn('To-Do' , self.browser.title)
         header_text = self.browser.find_element_by_tag_name('h1').text
@@ -78,8 +78,6 @@ class NewVisitorTest(StaticLiveServerTestCase):
         # "1: Buy peacock feathers" as an item in a to-do list table
         inputbox.send_keys(Keys.ENTER)
         self.wait_for_row_in_list_table('1: Buy peacock feathers')
-
-        self.fail('Finish the test!')
         
         # There is still a text box inviting her to add another item. She
         # enters "use peacock feathers to make a fly" (Edith is very 
